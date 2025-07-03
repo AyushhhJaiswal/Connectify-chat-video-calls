@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { useQuery } from "@tanstack/react-query";
 import { getStreamToken } from "../lib/api";
-
 import {
   Channel,
   ChannelHeader,
@@ -18,7 +17,6 @@ import toast from "react-hot-toast";
 
 import ChatLoader from "../components/ChatLoader";
 import CallButton from "../components/CallButton";
-
 import ChatSidebar from "../components/ChatSideBar";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
@@ -29,22 +27,30 @@ const ChatPage = () => {
   const [chatClient, setChatClient] = useState(null);
   const [channel, setChannel] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const { authUser } = useAuthUser();
 
   const { data: tokenData } = useQuery({
     queryKey: ["streamToken"],
     queryFn: getStreamToken,
-    enabled: !!authUser, // this will run only when authUser is available
+    enabled: !!authUser,
   });
+
+  // 📱 Detect screen size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const initChat = async () => {
-      if (!tokenData?.token || !authUser) return;
+      if (!tokenData?.token || !authUser || !targetUserId) return;
 
       try {
-        console.log("Initializing stream chat client...");
-
         const client = StreamChat.getInstance(STREAM_API_KEY);
 
         await client.connectUser(
@@ -57,7 +63,6 @@ const ChatPage = () => {
         );
 
         const channelId = [authUser._id, targetUserId].sort().join("-");
-
         const currChannel = client.channel("messaging", channelId, {
           members: [authUser._id, targetUserId],
         });
@@ -93,7 +98,9 @@ const ChatPage = () => {
 
   return (
     <div className="flex h-[93vh]">
-      <ChatSidebar />
+      {/* 🖥️ Show sidebar only on desktop */}
+      {!isMobile && <ChatSidebar />}
+
       <div className="flex-1">
         <Chat client={chatClient}>
           <Channel channel={channel}>
@@ -112,4 +119,5 @@ const ChatPage = () => {
     </div>
   );
 };
+
 export default ChatPage;

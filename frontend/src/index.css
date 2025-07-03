@@ -19,7 +19,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
-
+@media (max-width: 768px) {
+  .str-chat__container {
+    max-width: 88%;
+    max-height: 90%;
+  }
+}
 .str-chat__list {
   background-color: #ffffff;
   padding: 12px;
