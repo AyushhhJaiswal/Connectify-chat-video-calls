@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, HomeIcon, Orbit, UsersIcon, MessageSquareDot,MessageCirclePlus } from "lucide-react";
+import { BellIcon, HomeIcon, Orbit, UsersIcon, MessageSquareDot,MessageCirclePlus,BrainCircuit } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getFriendRequests } from "../lib/api";
 import { useEffect, useState } from "react";
@@ -139,6 +139,29 @@ const Sidebar = () => {
           <MessageCirclePlus className="size-5 text-base-content opacity-70" />
           <span>Communities</span>
         </Link>
+
+
+        <Link
+  to="/ai-chat"
+  className={`relative btn justify-start w-full gap-3 px-3 normal-case overflow-hidden transition-all duration-300 ${
+    currentPath === "/ai-chat"
+      ? "btn-active border-2 border-primary"
+      : "btn-ghost"
+  }`}
+>
+  {/* Glow effect */}
+  {currentPath !== "/ai-chat" && (
+    <span className="absolute -inset-px rounded-md bg-gradient-to-r from-primary to-secondary opacity-40 animate-pulse blur-sm" />
+  )}
+
+  {/* Icon */}
+  <BrainCircuit className="size-5 text-primary drop-shadow-sm relative z-10" />
+  <span className="font-semibold text-xl text-primary relative z-10">
+    Chat with AI
+  </span>
+</Link>
+
+
 
 
       </nav>

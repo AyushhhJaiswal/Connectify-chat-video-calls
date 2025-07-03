@@ -13,6 +13,7 @@ import Layout from './components/Layout.jsx'
 import { useThemeStore } from './store/useThemeStore.js'
 import FriendsPage from './pages/FriendsPage.jsx'
 import CommunityPage from './pages/CommunityPage.jsx'
+import AiChatPage from './pages/AiChatPage.jsx'
 
 const App = () => {
 
@@ -121,6 +122,17 @@ const App = () => {
          element={isAuthenticated && isOnboarded ?(
             <Layout showSidebar={false}>
               <CommunityPage/>
+            </Layout>
+          ):(
+            <Navigate to={!isAuthenticated ? "login" : "/onboarding"}/>
+          )} 
+          />
+
+      <Route 
+        path="/ai-chat"
+         element={isAuthenticated && isOnboarded ?(
+            <Layout showSidebar={true}>
+              <AiChatPage/>
             </Layout>
           ):(
             <Navigate to={!isAuthenticated ? "login" : "/onboarding"}/>
