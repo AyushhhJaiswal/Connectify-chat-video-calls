@@ -12,6 +12,22 @@ Connectify is a real-time full-stack social platform that lets users **chat, vid
 
 # 🔥 Features
 
+# 🧠 AI Integration
+
+> Connectify takes interaction to the next level by integrating **state-of-the-art AI components** for dynamic user engagement.
+
+- 🤖 **Context-Aware AI Chatbot** powered by transformer-based architecture for natural and responsive interaction  
+- 🧩 **Modular AI Interface** using isolated React components for real-time, low-latency inference rendering  
+- 🗣️ **Prompt-to-Response Pipeline** integrated using OpenAI's GPT APIs, enabling seamless human-like conversations  
+- ⚡ **Client-Side Token Streaming** for fast, progressive rendering of AI responses using `react-streaming` patterns  
+- 🔄 **Auto-Refresh & Smart Scroll Anchoring** to preserve UX in async environments  
+- 🔐 **AI Middleware Handlers** ensuring secure, rate-limited, and authenticated access to AI endpoints  
+- 🧬 Fully decoupled from monolithic state using **Zustand with AI-specific selectors** for performance and clarity  
+
+_“Bridging conversational AI with community, Connectify redefines what it means to talk online.”_
+
+---
+
 - 🌐 **Real-time Chat** with typing indicators, reactions & online/offline status
 - 📹 **1-on-1 and Group Video Calling** with screen sharing & call recording
 - 🌍 **Communities** based on language learning, hobbies, and global interests
@@ -25,6 +41,7 @@ Connectify is a real-time full-stack social platform that lets users **chat, vid
 - 🚀 **Fully deployed on Render** (free tier)
 
 ---
+
 
 ## 🧑‍💻 Tech Stack
 
