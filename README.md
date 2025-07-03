@@ -68,6 +68,7 @@ NODE_ENV=development
 Frontend (/frontend)
 
 VITE_STREAM_API_KEY=your_stream_api_key
+VITE_OPENROUTER_API_KEY=your_key
 
 🛠️ Run Locally
 1️⃣ Backend
